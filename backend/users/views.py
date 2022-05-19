@@ -34,9 +34,8 @@ class CustomUserViewSet(views.UserViewSet):
             user.set_password(serializer.validated_data['new_password'])
             user.save()
             return Response({'status': 'password set'})
-        else:
-            return Response(serializer.errors,
-                            status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors,
+                        status=status.HTTP_400_BAD_REQUEST)
 
     @action(detail=False, permission_classes=(permissions.IsAuthenticated,))
     def subscriptions(self, request):
@@ -91,8 +90,7 @@ class CustomUserViewSet(views.UserViewSet):
             )
             subscribe.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
-        else:
-            return Response(
-                {'status': 'Такая подписка не существует.'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+        return Response(
+            {'status': 'Такая подписка не существует.'},
+            status=status.HTTP_400_BAD_REQUEST
+        )

@@ -3,10 +3,7 @@ from rest_framework.permissions import SAFE_METHODS, BasePermission
 
 class AdminOrUserOrReadOnly(BasePermission):
     """Класс разрешений на действия с User."""
-
     def has_permission(self, request, view):
-        # if request.method == ['GET']:
-        #     return True
         return(
             request.method in SAFE_METHODS or
             request.user.is_authenticated
