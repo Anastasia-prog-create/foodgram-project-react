@@ -9,7 +9,7 @@
 * Docker
 * React
 
-![Yamdb_final workflow](https://github.com/Anastasia-prog-create/yamdb_final/actions/workflows/yamdb_workflow.yml/badge.svg?event=push)
+![Yamdb_final workflow](https://github.com/Anastasia-prog-create/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg?event=push)
 
 ### О проекте:
 
@@ -32,13 +32,10 @@ DB_PORT=port_number
 ```
 ### URLS проекта:
 Все запросы к API начинаются с /api/, доступные адреса:
-* http://51.250.102.104/api/users/
-* http://51.250.102.104/api/tags/
-* http://51.250.102.104/api/recipes/
-* http://51.250.102.104/api/ingredients/
-
-### Ознакомится с подробной документацией к API можно здесь:
-http://51.250.102.104/redoc/
+* http://84.252.143.61/api/users/
+* http://84.252.143.61/api/tags/
+* http://84.252.143.61/api/recipes/
+* http://84.252.143.61/api/ingredients/
 
 ### Автор проекта:
 Кривошеева Анастасия - студент 6 когорты pythonplus Яндекс Практикума.
