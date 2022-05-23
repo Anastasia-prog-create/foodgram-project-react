@@ -16,19 +16,19 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='shoppingcart',
             name='id',
-            field=models.AutoField(auto_created=True, default=1, primary_key=True, serialize=False, verbose_name='ID'),
+            field=models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='shoppingcart',
             name='recipe',
-            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.CASCADE, to='recipes.Recipe', verbose_name='Рецепт'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='recipes.Recipe', verbose_name='Рецепт'),
             preserve_default=False,
         ),
         migrations.AddField(
             model_name='shoppingcart',
             name='user',
-            field=models.ForeignKey(default=4, on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Пользователь'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL, verbose_name='Пользователь'),
             preserve_default=False,
         ),
         migrations.AddConstraint(
