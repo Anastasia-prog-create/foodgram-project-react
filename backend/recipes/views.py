@@ -11,7 +11,7 @@ from api.serializers import (FavoriteANDShoppingListSerializer,
                              RecipeCreateUpdateSerializer, RecipeGETSerializer,
                              TagSerializer)
 
-from .filters import IngredientSearchFilter
+from .filters import IngredientSearchFilter, RecipesFilter
 from .models import (FavoriteList, Ingredient, Recipe, RecipeIngredients,
                      ShoppingCart, Tag)
 from .permissions import AuthorOrReadOnly
@@ -34,8 +34,9 @@ class IngredientViewSet(viewsets.ReadOnlyModelViewSet):
 class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     permission_classes = (AuthorOrReadOnly,)
-    filter_backends = (DjangoFilterBackend,) #TagsFilterSet)
-    filterset_fields = ('author',)
+    filter_backends = (DjangoFilterBackend,)
+    filter_class = RecipesFilter
+    #filterset_fields = ('author',)
 
     def get_queryset(self):
         queryset = Recipe.objects.all()
@@ -43,9 +44,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
         is_in_shopping_cart = self.request.query_params.get(
             'is_in_shopping_cart'
         )
-        tags = self.request.query_params.get('tags')
-        if tags:
-            queryset = queryset.filter(tags__slug=tags)
+        # tags = self.request.query_params.get('tags')
+        # if tags:
+        #     queryset = queryset.filter(tags__slug=tags)
         if is_favorited:
             recipes_id = FavoriteList.objects.filter(
                 user=self.request.user
