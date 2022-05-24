@@ -8,9 +8,10 @@ from rest_framework.response import Response
 from api.serializers import (PasswordSerializer, SubscribeSerializer,
                              SubscribesListSerializer, UserCreateSerializer,
                              UserSerializer)
-
+                             
 from .models import Subscribe, User
 from .permissions import AdminOrUserOrReadOnly
+from backend.pagination import FoodgramPagination
 
 
 class CustomUserViewSet(views.UserViewSet):
@@ -37,7 +38,8 @@ class CustomUserViewSet(views.UserViewSet):
         return Response(serializer.errors,
                         status=status.HTTP_400_BAD_REQUEST)
 
-    @action(detail=False, permission_classes=(permissions.IsAuthenticated,))
+    @action(detail=False, permission_classes=(permissions.IsAuthenticated,),
+            pagination_class=FoodgramPagination,)
     def subscriptions(self, request):
         queryset = User.objects.filter(
                 user__subscriber=request.user).annotate(
