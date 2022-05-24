@@ -10,8 +10,8 @@ class IngredientSearchFilter(filters.SearchFilter):
 class RecipesFilter(filter.FilterSet):
     tags = filter.ModelMultipleChoiceFilter(
         field_name='tags__slug',
-        #to_field_name='tags',
-        #lookup_type='in',
+        to_field_name='slug',
+        lookup_type='in',
         queryset=Tag.objects.all()
     )
 
