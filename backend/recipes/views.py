@@ -43,9 +43,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
         is_in_shopping_cart = self.request.query_params.get(
             'is_in_shopping_cart'
         )
-        # tags = self.request.query_params.get('tags')
-        # if tags:
-        #     queryset = queryset.filter(tags__slug=tags)
+        tags = self.request.query_params.get('tags')
+        if tags:
+            queryset = queryset.filter(tags__slug=tags)
         if is_favorited:
             recipes_id = FavoriteList.objects.filter(
                 user=self.request.user
