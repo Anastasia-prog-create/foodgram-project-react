@@ -251,9 +251,9 @@ class SubscribesListSerializer(UserSerializer):
         )
 
     def get_recipes(self, obj):
-        if self.context['request'].query_params.get('recipe_limit'):
+        if self.context['request'].query_params.get('recipes_limit'):
             limit = int(self.context['request'].query_params.get(
-                'recipe_limit')
+                'recipes_limit')
             )
             recipes = Recipe.objects.filter(author=obj)[:limit]
         else:
