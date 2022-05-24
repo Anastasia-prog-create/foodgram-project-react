@@ -8,7 +8,7 @@ class IngredientSearchFilter(filters.SearchFilter):
 
 
 class RecipesFilter(FilterSet):
-    tags = CharFilter(field_name='tags__slug') 
+    tags = filters.django_filters.CharFilter(field_name='tags__slug') 
 
     class Meta:
         model = Recipe
