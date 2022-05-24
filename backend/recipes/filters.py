@@ -7,7 +7,7 @@ class IngredientSearchFilter(filters.SearchFilter):
     search_param = 'name'
 
 
-class RecipesFilter(filters.FilterSet):
+class RecipesFilter(filter.FilterSet):
     tags = filter.ModelMultipleChoiceFilter(
         name='tags__slug',
         to_field_name='tags',
