@@ -39,7 +39,7 @@ class CustomUserViewSet(views.UserViewSet):
                         status=status.HTTP_400_BAD_REQUEST)
 
     @action(detail=False, permission_classes=(permissions.IsAuthenticated,),
-            pagination_class=FoodgramPagination,)
+            pagination_class=FoodgramPagination, methods=['get'],)
     def subscriptions(self, request):
         queryset = User.objects.filter(
                 user__subscriber=request.user).annotate(
