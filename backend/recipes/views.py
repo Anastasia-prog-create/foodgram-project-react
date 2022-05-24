@@ -117,7 +117,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
                     )
 
     @action(detail=True, methods=['post', 'delete'],
-            permission_classes=(permissions.IsAuthenticated))
+            permission_classes=(permissions.IsAuthenticated, ))
     def shopping_cart(self, request, pk):
         if request.method == 'POST':
             try:
@@ -149,7 +149,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
                     )
 
     @action(detail=False, methods=['get'],
-            permission_classes=(permissions.IsAuthenticated))
+            permission_classes=(permissions.IsAuthenticated, ))
     def download_shopping_cart(self, request):
         if self.request.user.is_authenticated:
             shopping_list = ShoppingCart.objects.filter(
