@@ -8,7 +8,7 @@ class IngredientSearchFilter(filters.SearchFilter):
 
 
 class RecipesFilter(FilterSet):
-    tags = filters.CharFilter(field_name='tags__slug') 
+    tags = CharFilter(field_name='tags__slug') 
 
     class Meta:
         model = Recipe
