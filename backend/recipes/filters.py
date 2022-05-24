@@ -1,6 +1,6 @@
 from rest_framework import filters
 from .models import Recipe
-from django_filters.rest_framework import FilterSet
+from django_filters import FilterSet
 
 
 class IngredientSearchFilter(filters.SearchFilter):
@@ -8,7 +8,7 @@ class IngredientSearchFilter(filters.SearchFilter):
 
 
 class RecipesFilter(FilterSet):
-    tags = filters.CharFilter(field_name='last_login') 
+    tags = filters.CharFilter(field_name='tags__slug') 
 
     class Meta:
         model = Recipe
