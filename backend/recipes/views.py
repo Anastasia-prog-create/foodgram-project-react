@@ -11,7 +11,7 @@ from api.serializers import (FavoriteANDShoppingListSerializer,
                              RecipeCreateUpdateSerializer, RecipeGETSerializer,
                              TagSerializer)
 
-from .filters import IngredientSearchFilter, TagsFilterSet
+from .filters import IngredientSearchFilter
 from .models import (FavoriteList, Ingredient, Recipe, RecipeIngredients,
                      ShoppingCart, Tag)
 from .permissions import AuthorOrReadOnly
@@ -34,7 +34,7 @@ class IngredientViewSet(viewsets.ReadOnlyModelViewSet):
 class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     permission_classes = (AuthorOrReadOnly,)
-    filter_backends = (DjangoFilterBackend, TagsFilterSet)
+    filter_backends = (DjangoFilterBackend,) #TagsFilterSet)
     filterset_fields = ('author',)
 
     def get_queryset(self):
