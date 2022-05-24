@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from api.serializers import (PasswordSerializer, SubscribeSerializer,
                              SubscribesListSerializer, UserCreateSerializer,
                              UserSerializer)
-                             
+
 from .models import Subscribe, User
 from .permissions import AdminOrUserOrReadOnly
 from backend.pagination import FoodgramPagination
