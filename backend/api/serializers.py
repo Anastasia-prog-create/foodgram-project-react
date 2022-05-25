@@ -104,14 +104,6 @@ class IngredientSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class RecipeIngredientsSerializer(serializers.ModelSerializer):
-    '''Сериализатор для просмотра ингредиентов в рецепте.'''
-
-    class Meta:
-        model = RecipeIngredients
-        fields = '__all__'
-
-
 class IngredientsSerializer(serializers.ModelSerializer):
     '''Сериализатор для добавления ингредиентов в рецепт.'''
     id = serializers.IntegerField()
@@ -190,7 +182,7 @@ class RecipeGETSerializer(serializers.ModelSerializer):
     """Сериализатор для просмотра рецептов."""
     tags = TagSerializer(many=True, read_only=True)
     author = UserSerializer(read_only=True)
-    ingredients = RecipeIngredientsSerializer(many=True, read_only=True)
+    ingredients = IngredientsSerializer(many=True, read_only=True)
     is_favorited = serializers.SerializerMethodField()
     is_in_shopping_cart = serializers.SerializerMethodField()
 
