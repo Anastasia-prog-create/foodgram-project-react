@@ -36,7 +36,6 @@ class RecipeViewSet(viewsets.ModelViewSet):
     permission_classes = (AuthorOrReadOnly,)
     filter_backends = (DjangoFilterBackend,)
     filter_class = RecipesFilter
-    #filterset_fields = ('author',)
 
     def get_queryset(self):
         queryset = Recipe.objects.all()
@@ -44,9 +43,6 @@ class RecipeViewSet(viewsets.ModelViewSet):
         is_in_shopping_cart = self.request.query_params.get(
             'is_in_shopping_cart'
         )
-        # tags = self.request.query_params.get('tags')
-        # if tags:
-        #     queryset = queryset.filter(tags__slug=tags)
         if is_favorited:
             recipes_id = FavoriteList.objects.filter(
                 user=self.request.user
@@ -115,7 +111,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
                 return Response(
                     {'detail': 'Рецепт не найден в избранном.'},
                     status=status.HTTP_400_BAD_REQUEST
-                    )
+                )
 
     @action(detail=True, methods=['post', 'delete'],
             permission_classes=(permissions.IsAuthenticated, ))
@@ -147,7 +143,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
                 return Response(
                     {'detail': 'Рецепт не найден в корзине.'},
                     status=status.HTTP_400_BAD_REQUEST
-                    )
+                )
 
     @action(detail=False, methods=['get'],
             permission_classes=(permissions.IsAuthenticated, ))
@@ -176,6 +172,6 @@ class RecipeViewSet(viewsets.ModelViewSet):
             )
             return response
         return Response(
-                    {'detail': 'Учетные данные не были предоставлены.'},
-                    status=status.HTTP_401_UNAUTHORIZED
-                )
+            {'detail': 'Учетные данные не были предоставлены.'},
+            status=status.HTTP_401_UNAUTHORIZED
+        )

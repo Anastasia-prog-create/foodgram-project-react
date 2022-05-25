@@ -20,7 +20,7 @@ class CustomUserViewSet(views.UserViewSet):
     filter_backends = (filters.SearchFilter,)
     search_fields = ('username', )
     permission_classes = (AdminOrUserOrReadOnly, )
-    pagination_class=FoodgramPagination
+    pagination_class = FoodgramPagination
 
     def get_serializer_class(self):
         if self.action == 'create':
@@ -43,11 +43,11 @@ class CustomUserViewSet(views.UserViewSet):
             methods=['get'],)
     def subscriptions(self, request):
         queryset = User.objects.filter(
-                user__subscriber=request.user).annotate(
-                    recipes_count=Count(
-                        'author', filter=Q(user__subscriber=request.user)
-                        )
-                    )
+            user__subscriber=request.user).annotate(
+                recipes_count=Count(
+                    'author', filter=Q(user__subscriber=request.user)
+                )
+        )
         serializer = SubscribesListSerializer(
             queryset,
             many=True,
@@ -55,8 +55,8 @@ class CustomUserViewSet(views.UserViewSet):
                 'request': request,
                 'format': self.format_kwarg,
                 'view': self
-                }
-            )
+            }
+        )
         page = self.paginate_queryset(queryset)
         if page is not None:
             return self.get_paginated_response(serializer.data)

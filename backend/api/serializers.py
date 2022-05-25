@@ -70,7 +70,7 @@ class SubscribeSerializer(serializers.ModelSerializer):
     subscriber = serializers.PrimaryKeyRelatedField(
         default=serializers.CurrentUserDefault(),
         read_only=True
-        )
+    )
 
     class Meta:
         model = Subscribe
@@ -155,7 +155,7 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
             RecipeIngredients.objects.create(
                 ingredient=get_object_or_404(
                     Ingredient, pk=ingredient.get('id')
-                    ),
+                ),
                 amount=amount,
                 recipe=recipe
             )
@@ -172,7 +172,7 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
             RecipeIngredients.objects.get_or_create(
                 ingredient=get_object_or_404(
                     Ingredient, pk=ingredient.get('id')
-                    ),
+                ),
                 amount=amount,
                 recipe=recipe
             )
@@ -204,16 +204,16 @@ class RecipeGETSerializer(serializers.ModelSerializer):
 
     def get_is_favorited(self, obj):
         return (
-            self.context['request'].user.is_authenticated and
-            FavoriteList.objects.filter(
+            self.context['request'].user.is_authenticated
+            and FavoriteList.objects.filter(
                 recipe=obj, user=self.context['request'].user
             ).exists()
         )
 
     def get_is_in_shopping_cart(self, obj):
         return (
-            self.context['request'].user.is_authenticated and
-            ShoppingCart.objects.filter(
+            self.context['request'].user.is_authenticated
+            and ShoppingCart.objects.filter(
                 recipe=obj, user=self.context['request'].user
             ).exists()
         )
@@ -259,8 +259,8 @@ class SubscribesListSerializer(UserSerializer):
         else:
             recipes = Recipe.objects.filter(author=obj)
         serializer = RecipeGETSerializer(
-                        recipes,
-                        many=True,
-                        context={'request': self.context['request']}
-                        )
+            recipes,
+            many=True,
+            context={'request': self.context['request']}
+        )
         return serializer.data
