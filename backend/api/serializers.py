@@ -118,9 +118,15 @@ class IngredientsSerializer(serializers.ModelSerializer):
 
 class RecipeIngredientsSerializer(serializers.ModelSerializer):
     '''Сериализатор просмотра ингредиентов в рецепте.'''
-    id = serializers.IntegerField(read_only=True)
-    name = serializers.CharField(read_only=True)
-    measurement_unit = serializers.IntegerField(read_only=True)
+    id = serializers.ReadOnlyField(
+        source='ingredient.id'
+    )
+    name = serializers.ReadOnlyField(
+        source='ingredient.name'
+    )
+    measurement_unit = serializers.ReadOnlyField(
+        source='ingredient.measurement_unit'
+    )
 
     class Meta:
         model = RecipeIngredients
