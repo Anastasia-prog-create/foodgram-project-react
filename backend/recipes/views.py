@@ -75,9 +75,9 @@ class RecipeViewSet(viewsets.ModelViewSet):
             raise MethodNotAllowed(request.method)
         return super().update(request, *args, **kwargs)
 
-    def partial_update(self, request, *args, **kwargs):
-        kwargs['partial'] = False
-        return super().update(request, *args, **kwargs)
+    # def partial_update(self, request, *args, **kwargs):
+    #     # kwargs['partial'] = False
+    #     # return super().update(request, *args, **kwargs)
 
     @action(detail=True, methods=['post', 'delete'],
             permission_classes=(permissions.IsAuthenticated,))
