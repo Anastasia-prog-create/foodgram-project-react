@@ -10,7 +10,7 @@ class Command(BaseCommand):
     help = 'Load ingredients data'
 
     def handle(self, *args, **options):
-        with open('data/ingredients.csv') as file:
+        with open('../data/ingredients.csv') as file:
             file_reader = csv.reader(file)
             for row in file_reader:
                 name, measurement_unit = row
