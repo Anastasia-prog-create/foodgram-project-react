@@ -196,7 +196,7 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
                 recipe=recipe
             )
         return recipe
-    
+
     def validate_image(self, value):
         if value is None:
             raise serializers.ValidationError("Добавьте картинку в рецепт.")
