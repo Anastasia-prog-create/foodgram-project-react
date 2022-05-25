@@ -151,7 +151,6 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
         required=True
     )
     image = Base64ImageField(
-        required=True,
         represent_in_base64=True
     )
 
@@ -185,7 +184,6 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         ingredients = validated_data.pop('recipeingredients_set')
         tags = validated_data.pop('tags')
-
         recipe = super().update(instance, validated_data)
         instance.tags.set = recipe.tags.set(tags)
         for ingredient in ingredients:
@@ -198,6 +196,11 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
                 recipe=recipe
             )
         return recipe
+    
+    def validate_image(self, value):
+        if value is None:
+            raise serializers.ValidationError("Добавьте картинку в рецепт.")
+        return value
 
 
 class RecipeGETSerializer(serializers.ModelSerializer):
