@@ -5,7 +5,7 @@ from recipes.models import Ingredient
 import csv
 
 
-class CommandLoadData(BaseCommand):
+class Command(BaseCommand):
     """Комманда для загрузки ингредиентов из csv."""
     help = 'Load ingredients data'
 
