@@ -128,7 +128,7 @@ class RecipeIngredientsSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'name',
-            'measurement_unit'
+            'measurement_unit',
             'amount',
         )
 
